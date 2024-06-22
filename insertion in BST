@@ -1,0 +1,52 @@
+//insert a new element in BST
+void BST::insertElement(int data){
+   
+    //check if root is null
+    if(root==NULL){
+        node *n=new node();
+        n->item=data;
+        n->left=NULL;
+        n->right=NULL;
+        root=n;
+        
+    }
+
+   else {
+    node *ptr;
+    ptr=root;
+    bool flag=true;
+    while(flag){               //loop starts here
+        if(data==ptr->item){//node pahle nahi bna rahe h kyuki isse hoga ki memory leak ho jayega when data is duplicate
+            flag=false;
+        }
+        if(ptr->item>data){
+            //go to left subtree
+            if(ptr->left!=NULL){
+                ptr=ptr->left;
+            }
+            else{
+                node *n=new node();
+                n->item=data;
+                n->left=NULL;
+                n->right=NULL;
+                ptr->left=n;
+                flag=false;
+            }
+        }
+        //else go to right subtree
+        else{
+            if(ptr->right!=NULL){
+                ptr=ptr->right;
+            }
+            else{
+                node *n=new node();
+                n->item=data;
+                n->left=NULL;
+                n->right=NULL;
+                ptr->right=n;
+                flag=false;
+            }
+        }
+    }       //loop ends here
+}
+}
